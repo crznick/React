@@ -34,7 +34,7 @@ const App = () => {
             const response = await axios.get('http://bytes507.mywire.org:4000/equipos');
             setEquipos(response.data);
         } catch (error) {
-            console.error('Error fetching equipos:', error);
+            console.error('Error al consultar los equipos:', error);
         }
     };
 
@@ -60,7 +60,7 @@ const App = () => {
 
             setSolicitudes(solicitudesFiltradas);
         } catch (error) {
-            console.error('Error fetching solicitudes:', error);
+            console.error('Error al consultar las solicitudes:', error);
         }
     };
 
@@ -76,7 +76,7 @@ const App = () => {
 
             setHistorial(solicitudesOrdenadas);
         } catch (error) {
-            console.error('Error fetching solicitudes:', error);
+            console.error('Error al consultar las solicitudes:', error);
         }
     };
 
