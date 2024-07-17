@@ -31,7 +31,7 @@ const App = () => {
     //Función para obtener todos los equipos creados
     const fetchEquipos = async () => {
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/equipos');
+            const response = await axios.get('https://express-3ede.onrender.com/equipos');
             setEquipos(response.data);
         } catch (error) {
             console.error('Error al consultar los equipos:', error);
@@ -46,7 +46,7 @@ const App = () => {
     //Función para traer todas las solicitudes
     const fetchSolicitudes = async () => {
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/solicitudes');
+            const response = await axios.get('https://express-3ede.onrender.com/solicitudes');
 
             //Filtrar y ordenar las solicitudes
             const solicitudesFiltradas = response.data.filter(solicitud =>
@@ -66,7 +66,7 @@ const App = () => {
 
     const fetchHistorial = async () => {
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/solicitudes');
+            const response = await axios.get('https://express-3ede.onrender.com/solicitudes');
 
             //Ordenar las solicitudes por _id
             const solicitudesOrdenadas = response.data.sort((a, b) => {
@@ -93,7 +93,7 @@ const App = () => {
     //Función para cambiar el estado de una solicitud
     const cambiarEstadoSolicitud = async (id, marbete, nuevoEstado) => {
         try {
-            const response = await axios.post(`http://bytes507.mywire.org:4000/solicitudes/${id}`, {
+            const response = await axios.post(`https://express-3ede.onrender.com/solicitudes/${id}`, {
                 marbete: marbete,
                 encargado: procesarCorreo(correo),
                 estado: nuevoEstado,
@@ -155,7 +155,7 @@ const App = () => {
     //Función para agregar equipos
     const handleAgregarEquipos = async () => {
         try {
-            const response = await axios.post('http://bytes507.mywire.org:4000/equipos', {
+            const response = await axios.post('https://express-3ede.onrender.com/equipos', {
                 descripcion: descripcionEquipo,
                 marbete: marbeteEquipo,
             });

@@ -29,7 +29,7 @@ const App = () => {
     //Función para obtener todos los equipos disponibles
     const fetchEquipos = async () => {
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/equipos');
+            const response = await axios.get('https://express-3ede.onrender.com/equipos');
             setEquipos(response.data);
         } catch (error) {
             console.error('Error al traer información de equipos:', error);
@@ -39,7 +39,7 @@ const App = () => {
     //Función para obtener las solicitudes realizadas por el correo específico
     const fetchSolicitudes = async () => {
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/solicitudes', {
+            const response = await axios.get('https://express-3ede.onrender.com/solicitudes', {
                 params: { correo }
             });
             if (response.data.length === 0) {
@@ -88,7 +88,7 @@ const App = () => {
         if (!selectedEquipo) return;
         const { descripcion, marbete } = selectedEquipo;
         try {
-            const response = await axios.post('http://bytes507.mywire.org:4000/solicitudes', {
+            const response = await axios.post('https://express-3ede.onrender.com/solicitudes', {
                 correo,
                 equipo: descripcion,
                 marbete: marbete,

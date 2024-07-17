@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOMClient from 'react-dom/client';
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-import App2 from "./App2";
-import App from "./App";
+import App2 from "./Administrador";
+import App from "./Profesores";
+import Login from "./Login";
 const theme = createTheme();
 const container = document.getElementById('root');
 const root = ReactDOMClient.createRoot(container);
@@ -11,7 +12,6 @@ const root = ReactDOMClient.createRoot(container);
 root.render(
     <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App2 />
-            
+        <App />   
     </ThemeProvider>,
 );
