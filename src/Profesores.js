@@ -9,9 +9,11 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 
 const App = () => {
+    const SOLICITUDES = "https://express-3ede.onrender.com/solicitudes";
+    const EQUIPOS = "https://express-3ede.onrender.com/equipos";
     const [equipos, setEquipos] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState('');
-    const [correo, setCorreo] = useState('eusebio.mendoza@utp.ac.pa.com');
+    const [correo, setCorreo] = useState('');
     const [open, setOpen] = useState(false);
     const [selectedEquipo, setSelectedEquipo] = useState(null);
     const [confirmationOpen, setConfirmationOpen] = useState(false);
@@ -20,16 +22,18 @@ const App = () => {
     const [noHaySolicitudes, setNoHaySolicitudes] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [mostrarEquipos, setMostrarEquipos] = useState(true);
+    const storedUser = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         fetchEquipos();
         fetchSolicitudes();
+        setCorreo(storedUser.correo);
     }, []);
 
     //Función para obtener todos los equipos disponibles
     const fetchEquipos = async () => {
         try {
-            const response = await axios.get('https://express-3ede.onrender.com/equipos');
+            const response = await axios.get(EQUIPOS);
             setEquipos(response.data);
         } catch (error) {
             console.error('Error al traer información de equipos:', error);
@@ -39,7 +43,7 @@ const App = () => {
     //Función para obtener las solicitudes realizadas por el correo específico
     const fetchSolicitudes = async () => {
         try {
-            const response = await axios.get('https://express-3ede.onrender.com/solicitudes', {
+            const response = await axios.get(SOLICITUDES, {
                 params: { correo }
             });
             if (response.data.length === 0) {
@@ -88,7 +92,7 @@ const App = () => {
         if (!selectedEquipo) return;
         const { descripcion, marbete } = selectedEquipo;
         try {
-            const response = await axios.post('https://express-3ede.onrender.com/solicitudes', {
+            const response = await axios.post(SOLICITUDES, {
                 correo,
                 equipo: descripcion,
                 marbete: marbete,

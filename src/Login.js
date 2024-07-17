@@ -1,27 +1,28 @@
 ﻿import React, { useState } from 'react';
 import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import axios from 'axios';
-//import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
-    //const history = useHistory();
+    const USUARIOS = "http://localhost:4000/usuarios";
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get('http://bytes507.mywire.org:4000/usuarios');
+            const response = await axios.get(USUARIOS);
             const usuarios = response.data;
 
-            const usuario = usuarios.find(user => user.correo === correo && user.contrasena === pass);
+            const usuario = usuarios.find(user => user.correo === correo && user._id === pass);
 
             if (usuario) {
                 localStorage.setItem('user', JSON.stringify(usuario));
                 if (usuario.rol === 'administrador') {
-                    //history.push('/app2');
+                    navigate('/Administrador');
                 } else if (usuario.rol === 'profesor') {
-                    //history.push('/app1');
+                    navigate('/Profesores');
                 }
             } else {
                 setError('Correo o contraseña incorrectos');
@@ -45,7 +46,7 @@ const Login = () => {
                     {"Préstamo de Equipos".replace(/�/g, 'í')}
                 </Typography>
                 {error && <Typography color="error">{error}</Typography>}
-                <form>
+                <form onSubmit={handleSubmit} >
                     <TextField
                         variant="outlined"
                         margin="normal"
