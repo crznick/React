@@ -4,13 +4,20 @@ import {
     Container, TextField, Card, CardContent, Button, Typography,
     Dialog, DialogActions, DialogContent, DialogContentText,
     DialogTitle, AppBar, Toolbar, IconButton, Drawer, List,
-    ListItem, ListItemText, Divider,
+    ListItem, ListItemText, Divider, MenuItem, Select, FormControl,
+    InputLabel, Table, TableContainer,TableHead, TableBody, TableCell,
+    TableRow, Modal, Tooltip,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutButton from './LogOut';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const App = () => {
-    const SOLICITUDES = "http://localhost:4000/solicitudes";
-    const EQUIPOS = "http://localhost:4000/equipos";
+    const SOLICITUDES = "https://express-caz6.onrender.com/solicitudes";
+    const EQUIPOS = "https://express-caz6.onrender.com/equipos";
+    const USUARIOS = "https://express-caz6.onrender.com/usuarios";
+
     const [equipos, setEquipos] = useState([]);
     const [solicitudes, setSolicitudes] = useState([]);
     const [historial, setHistorial] = useState([]);
@@ -28,6 +35,17 @@ const App = () => {
     const [selectedEquipo, setSelectedEquipo] = useState(null);
     const [newDescripcion, setNewDescripcion] = useState('');
     const [selectedDelete, setSelectedDelete] = useState('');
+    const [nombreUsuario, setNombreUsuario] = useState('');
+    const [rolUsuario, setRolUsuario] = useState('');
+    const [correoUsuario, setCorreoUsuario] = useState('');
+    const [usuarios, setUsuarios] = useState([]);
+    const [modalEditar, setModalEditar] = useState(false);
+    const [modalEliminar, setModalEliminar] = useState(false);
+    const [usuarioSeleccionado, setUsuarioSeleccionado] = useState(null);
+    const [confirmacionModal, setConfirmacionModal] = useState('');
+    const [nombreUsuarioMod, setNombreUsuarioMod] = useState('');
+    const [rolUsuarioMod, setRolUsuarioMod] = useState('');
+    const [showId, setShowId] = useState(false);
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
@@ -35,7 +53,18 @@ const App = () => {
         fetchEquipos();
         fetchHistorial();
         setCorreo(storedUser.correo);
+        fetchUsuarios();
     }, []);
+
+    //Función para obtener todos los usuarios creados
+    const fetchUsuarios = async () => {
+        try {
+            const response = await axios.get(USUARIOS);
+            setUsuarios(response.data);
+        } catch (error) {
+            console.error('Error al consultar los usuarios:', error);
+        }
+    };
 
     //Función para obtener todos los equipos creados
     const fetchEquipos = async () => {
@@ -77,6 +106,9 @@ const App = () => {
         try {
             const response = await axios.get(SOLICITUDES);
 
+            if (!response) {
+                setNoHaySolicitudes(true);
+            }
             //Ordenar las solicitudes por _id
             const solicitudesOrdenadas = response.data.sort((a, b) => {
                 //Ordenar por _id ascendente
@@ -158,6 +190,17 @@ const App = () => {
                 <ListItemText primary="Historial" />
             </ListItem>
             <Divider />
+            <ListItem button onClick={() => { setSeccionActiva('agregarUsuarios'); setDrawerOpen(false); }}>
+                <ListItemText primary="Agregar Usuarios" />
+            </ListItem>
+            <Divider />
+            <ListItem button onClick={() => { setSeccionActiva('administrarUsuarios'); setDrawerOpen(false); }}>
+                <ListItemText primary="Administrar Usuarios" />
+            </ListItem>
+            <Divider />
+            <ListItem>
+                <LogoutButton />
+            </ListItem>
         </List>
     );
 
@@ -253,6 +296,93 @@ const App = () => {
             setDeleteOpen(false);
             setConfirmationOpen(true);
         }
+    };
+
+    //Funcion para guardar usuarios
+    const handleAgregarUsuarios = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(USUARIOS, {
+                correo: correoUsuario,
+                rol: rolUsuario,
+                nombre: nombreUsuario,
+            });
+            if (response.status === 200) {
+                setConfirmationMessage('Usuario agregado correctamente.');
+                await fetchUsuarios();
+                setCorreoUsuario('');
+                setNombreUsuario('');
+                setRolUsuario('');
+                setSeccionActiva('administrarUsuarios');
+            } else {
+                setConfirmationMessage('Error al agregar el usuario.');
+            }
+            setConfirmationOpen(true);
+        } catch (error) {
+            setConfirmationMessage('Error al conectar con el servicio.');
+            setConfirmationOpen(true);
+        }
+    };
+    //Funcion para editar usuarios
+    const handleEditarUsuario = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.post(`${USUARIOS}/${(usuarioSeleccionado.correo)}`, {
+                rol: rolUsuarioMod,
+                nombre: nombreUsuarioMod,
+            });
+            if (response.status === 200) {
+                setConfirmationMessage('Usuario modificado correctamente.');
+                setModalEditar(false);
+                setConfirmationOpen(true);
+                await fetchUsuarios();
+                setSeccionActiva('administrarUsuarios');
+            } else {
+                setConfirmationMessage('Error al modificar el usuario.');
+                setConfirmationOpen(true);
+            }
+        } catch (error) {
+            setConfirmationMessage('Error al conectar con el servicio.');
+            setConfirmationOpen(true);
+        }
+    };
+
+    //Funcion para borrar usuarios
+    const handleEliminarUsuario = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await axios.delete(`${USUARIOS}/${usuarioSeleccionado.correo}`);
+            if (response.status === 200) {
+                setConfirmationMessage('Usuario eliminado correctamente.');
+                setModalEliminar(false);
+                setConfirmationOpen(true);
+                await fetchUsuarios();
+                setSeccionActiva('administrarUsuarios');
+            } else {
+                setConfirmationMessage('Error al eliminar el usuario.');
+                setConfirmationOpen(true);
+            }
+        } catch (error) {
+            setConfirmationMessage('Error al conectar con el servicio.');
+            setConfirmationOpen(true);
+        }
+    };
+
+    const openEditarModal = (usuario) => {
+        setUsuarioSeleccionado(usuario);
+        setNombreUsuarioMod(usuario.nombre);
+        setRolUsuarioMod(usuario.rol);
+        setModalEditar(true);
+    };
+
+    const openEliminarModal = (usuario) => {
+        setUsuarioSeleccionado(usuario);
+        setModalEliminar(true);
+    };
+
+    // Estado para controlar la visibilidad del _id que utilzamos de contraseña
+    const toggleShowId = () => {
+        setShowId(!showId);
     };
 
     //Función para mostrar la sección seleccionada, por defecto esta la de solicitudes
@@ -365,9 +495,9 @@ const App = () => {
                                 <Card key={equipo._id} sx={{ width: '100%', maxWidth: '100%' }}>
                                     <CardContent>
                                         <Typography variant="h12">{equipo._id}</Typography>
-                                        <Typography variant="h10">{equipo.marbete}</Typography>
                                         <Typography variant="h6">{equipo.descripcion}</Typography>
-                                        <Typography variant="body2" color="textSecondary">Estado: {equipo.estado}</Typography>
+                                        <Typography variant="h10">Marbete: {equipo.marbete}</Typography>
+                                        <Typography variant="body2" color="#4f237f">{equipo.estado}</Typography>
                                         {equipo.estado === 'DISPONIBLE' && (
                                             <div>
                                                 <Button
@@ -411,6 +541,178 @@ const App = () => {
                                 </Card>
                             ))
                         )}
+                    </div>
+                );
+            case 'agregarUsuarios':
+                return (
+                    <div>
+                        <Typography variant="h4" gutterBottom sx={{ marginTop: '100px' }}>Agregar Usuarios</Typography>
+                        <form onSubmit={handleAgregarUsuarios}>
+                        <TextField
+                            label="Nombre completo"
+                            required
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            value={nombreUsuario}
+                            onChange={(e) => setNombreUsuario(e.target.value)}
+                        />
+                        <TextField
+                            label="Correo"
+                            required
+                            type="email"
+                            variant="outlined"
+                            fullWidth
+                            margin="normal"
+                            value={correoUsuario}
+                            onChange={(e) => setCorreoUsuario(e.target.value)}
+                        />
+                        <FormControl variant="outlined" fullWidth margin="normal">
+                            <InputLabel id="rol-label">Rol de Usuario</InputLabel>
+                            <Select
+                                labelId="rol-label"
+                                required
+                                value={rolUsuario}
+                                onChange={(e) => setRolUsuario(e.target.value)}
+                                label="Rol de Usuario"
+                            >
+                                <MenuItem value="administrador">Administrador</MenuItem>
+                                <MenuItem value="profesor">Profesor</MenuItem>
+                                <MenuItem value="deshabilitado">Deshabilitado</MenuItem>
+                            </Select>
+                        </FormControl>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            style={{ marginTop: '8px' }}
+                        >
+                            Agregar
+                        </Button>
+                        </form>
+                    </div>
+                );
+            case 'administrarUsuarios':
+                return (
+                    <div>
+                        <Typography variant="h4" gutterBottom sx={{ marginTop: '100px' }}>
+                            Administrar Usuarios
+                        </Typography>
+                        <TableContainer>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Nombre</TableCell>
+                                        <TableCell>Correo</TableCell>
+                                        <TableCell>Rol</TableCell>
+                                        <TableCell>Contraseña
+                                            <Tooltip title={showId ? 'Ocultar' : 'Mostrar'}>
+                                                <IconButton onClick={toggleShowId}>
+                                                    {showId ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                                                </IconButton>
+                                            </Tooltip>
+                                        </TableCell>
+                                        <TableCell>Acciones</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {usuarios.map((usuario) => (
+                                        <TableRow key={usuario.correo}>
+                                            <TableCell>{usuario.nombre}</TableCell>
+                                            <TableCell>{usuario.correo}</TableCell>
+                                            <TableCell>{usuario.rol}</TableCell>
+                                            <TableCell>
+                                                {showId ? (
+                                                    usuario._id // Mostrar el _id en texto plano
+                                                ) : (
+                                                    // Mostrar el _id enmascarado
+                                                    '••••••••••••••••••••••••••••••••'
+                                                )}
+                                            </TableCell>
+                                            <TableCell>
+                                                <Button
+                                                    onClick={() => openEditarModal(usuario)}
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    sx={{ marginRight: 1 }}
+                                                >
+                                                    Modificar
+                                                </Button>
+                                                <Button
+                                                    onClick={() => openEliminarModal(usuario)}
+                                                    variant="contained"
+                                                    color="error"
+                                                >
+                                                    Eliminar
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                        <Modal open={modalEditar} onClose={() => setModalEditar(false)}>
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', minWidth: '300px' }}>
+                                <Typography variant="h6">Modificar Usuario</Typography>
+                                <form onSubmit={handleEditarUsuario}>
+                                    <TextField
+                                        label="Nombre completo"
+                                        required
+                                        variant="outlined"
+                                        fullWidth
+                                        margin="normal"
+                                        value={nombreUsuarioMod}
+                                        onChange={(e) => setNombreUsuarioMod(e.target.value)}
+                                    />
+                                    <FormControl variant="outlined" fullWidth margin="normal">
+                                        <InputLabel id="rol-label">Rol de Usuario</InputLabel>
+                                        <Select
+                                            labelId="rol-label"
+                                            required
+                                            value={rolUsuarioMod}
+                                            onChange={(e) => setRolUsuarioMod(e.target.value)}
+                                            label="Rol de Usuario"
+                                        >
+                                            <MenuItem value="administrador">Administrador</MenuItem>
+                                            <MenuItem value="profesor">Profesor</MenuItem>
+                                            <MenuItem value="deshabilitado">Deshabilitado</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <Button type="submit" variant="contained" color="primary">
+                                        Guardar cambios
+                                    </Button>
+                                </form>
+                            </div>
+                        </Modal>
+                        <Modal open={modalEliminar} onClose={() => setModalEliminar(false)}>
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', minWidth: '300px' }}>
+                                <Typography variant="h6">Eliminar Usuario</Typography>
+                                <Typography>Para confirmar, escriba "eliminar":</Typography>
+                                <TextField
+                                    required
+                                    variant="outlined"
+                                    fullWidth
+                                    margin="normal"
+                                    value={confirmacionModal}
+                                    onChange={(e) => setConfirmacionModal(e.target.value)}
+                                />
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    disabled={confirmacionModal.toLowerCase() !== 'eliminar'}
+                                    onClick={handleEliminarUsuario}
+                                >
+                                    Confirmar Eliminación
+                                </Button>
+                            </div>
+                        </Modal>
+                        <Modal open={confirmationOpen} onClose={() => setConfirmationOpen(false)}>
+                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'white', padding: '20px', minWidth: '300px' }}>
+                                <Typography variant="h6">Confirmación</Typography>
+                                <Typography>{confirmationMessage}</Typography>
+                                <Button onClick={() => setConfirmationOpen(false)}>Cerrar</Button>
+                            </div>
+                        </Modal>
                     </div>
                 );
             default:

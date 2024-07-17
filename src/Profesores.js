@@ -7,10 +7,12 @@ import {
     ListItemText, IconButton, AppBar, Toolbar, Divider, 
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutButton from './LogOut';
 
 const App = () => {
-    const SOLICITUDES = "https://express-3ede.onrender.com/solicitudes";
-    const EQUIPOS = "https://express-3ede.onrender.com/equipos";
+    const SOLICITUDES = "https://express-caz6.onrender.com/solicitudes";
+    const EQUIPOS = "https://express-caz6.onrender.com/equipos";
+
     const [equipos, setEquipos] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState('');
     const [correo, setCorreo] = useState('');
@@ -146,6 +148,9 @@ const App = () => {
                         <ListItemText primary="Solicitudes Realizadas" />
                     </ListItem>
                     <Divider />
+                    <ListItem>
+                        <LogoutButton />
+                    </ListItem>
                 </List>
             </Drawer>
 

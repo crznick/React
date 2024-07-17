@@ -6,18 +6,16 @@ const Login = () => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
-    const USUARIOS = "http://localhost:4000/usuarios";
+    const USUARIOS = "https://express-caz6.onrender.com/usuarios";
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.get(USUARIOS);
-            const usuarios = response.data;
+            const response = await axios.get(`${USUARIOS}/${pass}`);
+            const usuario = response.data;
 
-            const usuario = usuarios.find(user => user.correo === correo && user._id === pass);
-
-            if (usuario) {
+            if (usuario.correo === correo) {
                 localStorage.setItem('user', JSON.stringify(usuario));
                 if (usuario.rol === 'administrador') {
                     navigate('/Administrador');
