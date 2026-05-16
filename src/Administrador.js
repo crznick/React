@@ -14,9 +14,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const App = () => {
-    const SOLICITUDES = "https://express-caz6.onrender.com/solicitudes";
-    const EQUIPOS = "https://express-caz6.onrender.com/equipos";
-    const USUARIOS = "https://express-caz6.onrender.com/usuarios";
+    const SOLICITUDES = "http://localhost:4000/solicitudes";
+    const EQUIPOS = "http://localhost:4000/equipos";
+    const USUARIOS = "http://localhost:4000/usuarios";
 
     const [equipos, setEquipos] = useState([]);
     const [solicitudes, setSolicitudes] = useState([]);
@@ -623,7 +623,7 @@ const App = () => {
                                             <TableCell>{usuario.rol}</TableCell>
                                             <TableCell>
                                                 {showId ? (
-                                                    usuario._id // Mostrar el _id en texto plano
+                                                    usuario.password // Mostrar el _id en texto plano
                                                 ) : (
                                                     // Mostrar el _id enmascarado
                                                     '••••••••••••••••••••••••••••••••'

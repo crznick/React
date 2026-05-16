@@ -10,8 +10,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutButton from './LogOut';
 
 const App = () => {
-    const SOLICITUDES = "https://express-caz6.onrender.com/solicitudes";
-    const EQUIPOS = "https://express-caz6.onrender.com/equipos";
+    const SOLICITUDES = "http://localhost:4000/solicitudes";
+    const EQUIPOS = "http://localhost:4000/equipos";
 
     const [equipos, setEquipos] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState('');

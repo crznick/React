@@ -6,27 +6,38 @@ const Login = () => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
-    const USUARIOS = "https://express-caz6.onrender.com/usuarios";
+    const USUARIOS = "http://localhost:4000/usuarios";
     const navigate = useNavigate();
 
+    //Iniciar sesión
     const handleSubmit = async (e) => {
+
         e.preventDefault();
+
         try {
-            const response = await axios.get(`${USUARIOS}/${pass}`);
+
+            const response = await axios.post(
+                'http://localhost:4000/login',
+                {
+                    correo: correo,
+                    password: pass
+                }
+            );
+
             const usuario = response.data;
 
-            if (usuario.correo === correo) {
-                localStorage.setItem('user', JSON.stringify(usuario));
-                if (usuario.rol === 'administrador') {
-                    navigate('/Administrador');
-                } else if (usuario.rol === 'profesor') {
-                    navigate('/Profesores');
-                }
-            } else {
-                setError('Correo o contraseña incorrectos');
+            localStorage.setItem('user', JSON.stringify(usuario));
+
+            if (usuario.rol === 'administrador') {
+                navigate('/Administrador');
+            } else if (usuario.rol === 'profesor') {
+                navigate('/Profesores');
             }
+
         } catch (error) {
-            setError('Error al conectar con el servicio');
+
+            setError('Correo o contraseña incorrectos');
+
         }
     };
 
