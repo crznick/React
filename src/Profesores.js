@@ -10,12 +10,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutButton from './LogOut';
 
 const App = () => {
-    const SOLICITUDES = "http://localhost:4000/solicitudes";
-    const EQUIPOS = "http://localhost:4000/equipos";
+    const API_URL = process.env.REACT_APP_API_URL;
+    const SOLICITUDES = `${API_URL}/solicitudes`;
+    const EQUIPOS = `${API_URL}/equipos`;
 
     const [equipos, setEquipos] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState('');
-    const [correo, setCorreo] = useState('');
+    //const [correo, setCorreo] = useState('');
     const [open, setOpen] = useState(false);
     const [selectedEquipo, setSelectedEquipo] = useState(null);
     const [confirmationOpen, setConfirmationOpen] = useState(false);
@@ -25,11 +26,12 @@ const App = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [mostrarEquipos, setMostrarEquipos] = useState(true);
     const storedUser = JSON.parse(localStorage.getItem('user'));
+    const correo = storedUser.correo;
 
     useEffect(() => {
         fetchEquipos();
         fetchSolicitudes();
-        setCorreo(storedUser.correo);
+        //setCorreo(storedUser.correo);
     }, []);
 
     //Función para obtener todos los equipos disponibles

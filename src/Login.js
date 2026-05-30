@@ -6,7 +6,9 @@ const Login = () => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
-    const USUARIOS = "http://localhost:4000/usuarios";
+    const API_URL = process.env.REACT_APP_API_URL;
+    const USUARIOS = `${API_URL}/usuarios`;
+    const LOGIN =  `${API_URL}/login`
     const navigate = useNavigate();
 
     //Iniciar sesión
@@ -16,8 +18,7 @@ const Login = () => {
 
         try {
 
-            const response = await axios.post(
-                'http://localhost:4000/login',
+            const response = await axios.post(LOGIN,
                 {
                     correo: correo,
                     password: pass

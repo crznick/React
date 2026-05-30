@@ -14,15 +14,16 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const App = () => {
-    const SOLICITUDES = "http://localhost:4000/solicitudes";
-    const EQUIPOS = "http://localhost:4000/equipos";
-    const USUARIOS = "http://localhost:4000/usuarios";
+    const API_URL = process.env.REACT_APP_API_URL;
+    const USUARIOS = `${API_URL}/usuarios`;
+    const SOLICITUDES = `${API_URL}/solicitudes`;
+    const EQUIPOS = `${API_URL}/equipos`;
 
     const [equipos, setEquipos] = useState([]);
     const [solicitudes, setSolicitudes] = useState([]);
     const [historial, setHistorial] = useState([]);
     const [filtroNombre, setFiltroNombre] = useState('');
-    const [correo, setCorreo] = useState('');
+    //const [correo, setCorreo] = useState('');
     const [confirmationOpen, setConfirmationOpen] = useState(false);
     const [confirmationMessage, setConfirmationMessage] = useState('');
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -47,12 +48,13 @@ const App = () => {
     const [rolUsuarioMod, setRolUsuarioMod] = useState('');
     const [showId, setShowId] = useState(false);
     const storedUser = JSON.parse(localStorage.getItem('user'));
+    const correo = storedUser.correo;
 
     useEffect(() => {
         fetchSolicitudes();
         fetchEquipos();
         fetchHistorial();
-        setCorreo(storedUser.correo);
+        //setCorreo(storedUser.correo);
         fetchUsuarios();
     }, []);
 
@@ -112,7 +114,7 @@ const App = () => {
             //Ordenar las solicitudes por _id
             const solicitudesOrdenadas = response.data.sort((a, b) => {
                 //Ordenar por _id ascendente
-                return a._id.localeCompare(b._id);
+                return b._id.localeCompare(a._id);
             });
 
             setHistorial(solicitudesOrdenadas);
