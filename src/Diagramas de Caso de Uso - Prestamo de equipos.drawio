@@ -1,0 +1,168 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="poR5g3ezN8qCjwvgX4Ek">
+    <mxGraphModel dx="1956" dy="1083" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-1" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Administrador" vertex="1">
+          <mxGeometry height="60" width="30" x="209" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-2" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Profesor" vertex="1">
+          <mxGeometry height="60" width="30" x="589" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-3" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Módulo de Autenticación" vertex="1">
+          <mxGeometry height="290" width="340" x="239" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-9" parent="hZxWZdIL3aq8FWoUL4t5-3" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-01 Iniciar Sesión" vertex="1">
+          <mxGeometry height="80" width="180" x="83" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-35" edge="1" parent="hZxWZdIL3aq8FWoUL4t5-3" source="hZxWZdIL3aq8FWoUL4t5-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#182E3E;fontColor=#1A1A1A;" target="hZxWZdIL3aq8FWoUL4t5-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-10" parent="hZxWZdIL3aq8FWoUL4t5-3" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-02 Cerrar Sesión" vertex="1">
+          <mxGeometry height="80" width="180" x="83" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-5" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-2" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="439" y="950" as="sourcePoint" />
+            <mxPoint x="469" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-4" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-1" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="209" y="110" as="sourcePoint" />
+            <mxPoint x="299" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-12" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Administrador" vertex="1">
+          <mxGeometry height="60" width="30" x="389" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-14" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value=" Módulo Gestión de Usuarios      " vertex="1">
+          <mxGeometry height="310" width="340" x="234" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-15" parent="hZxWZdIL3aq8FWoUL4t5-14" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-03 Registrar usuario" vertex="1">
+          <mxGeometry height="60" width="177" x="84.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-19" parent="hZxWZdIL3aq8FWoUL4t5-14" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-04 Consultar usuarios" vertex="1">
+          <mxGeometry height="60" width="177" x="86.5" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-20" parent="hZxWZdIL3aq8FWoUL4t5-14" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-05 Modificar usuario" vertex="1">
+          <mxGeometry height="60" width="177" x="86.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-21" parent="hZxWZdIL3aq8FWoUL4t5-14" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-06 Eliminar usuario" vertex="1">
+          <mxGeometry height="60" width="177" x="91" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-18" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-12" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-14" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="204" y="680" as="sourcePoint" />
+            <mxPoint x="294" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-23" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Administrador" vertex="1">
+          <mxGeometry height="60" width="30" x="1225" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-25" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Módulo de Gestión de Equipos" vertex="1">
+          <mxGeometry height="330" width="340" x="1065" y="210" as="geometry">
+            <mxRectangle height="30" width="200" x="1065" y="210" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-30" parent="hZxWZdIL3aq8FWoUL4t5-25" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-07 Registrar equipo" vertex="1">
+          <mxGeometry height="60" width="177" x="84" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-31" parent="hZxWZdIL3aq8FWoUL4t5-25" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-08 Consultar equipos" vertex="1">
+          <mxGeometry height="60" width="177" x="86" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-32" parent="hZxWZdIL3aq8FWoUL4t5-25" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-09 Modificar equipo" vertex="1">
+          <mxGeometry height="60" width="177" x="86" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-33" parent="hZxWZdIL3aq8FWoUL4t5-25" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-10 Eliminar equipo" vertex="1">
+          <mxGeometry height="60" width="177" x="90.5" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-29" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-23" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-25" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1035" y="110" as="sourcePoint" />
+            <mxPoint x="1125" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-36" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Profesor" vertex="1">
+          <mxGeometry height="60" width="30" x="1225" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-37" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Módulo de Consulta de Equipos" vertex="1">
+          <mxGeometry height="310" width="340" x="1065" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-38" parent="hZxWZdIL3aq8FWoUL4t5-37" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-11 Consultar equipos disponibles" vertex="1">
+          <mxGeometry height="80" width="177" x="84" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-43" parent="hZxWZdIL3aq8FWoUL4t5-37" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-12 Buscar equipos" vertex="1">
+          <mxGeometry height="80" width="177" x="90.5" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-44" parent="hZxWZdIL3aq8FWoUL4t5-37" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-13 Solicitar préstamo de equipo" vertex="1">
+          <mxGeometry height="80" width="177" x="87" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-42" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-36" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-37" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1035" y="690" as="sourcePoint" />
+            <mxPoint x="1125" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-45" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Administrador" vertex="1">
+          <mxGeometry height="60" width="30" x="389" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-46" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value=" Módulo de Administración de Solicitudes      " vertex="1">
+          <mxGeometry height="310" width="340" x="234" y="1390" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-47" parent="hZxWZdIL3aq8FWoUL4t5-46" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-14 Consultar solicitudes" vertex="1">
+          <mxGeometry height="60" width="177" x="84.5" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-48" parent="hZxWZdIL3aq8FWoUL4t5-46" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-15 Aprobar solicitud" vertex="1">
+          <mxGeometry height="60" width="177" x="86.5" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-49" parent="hZxWZdIL3aq8FWoUL4t5-46" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-16 Rechazar solicitud" vertex="1">
+          <mxGeometry height="60" width="177" x="86.5" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-50" parent="hZxWZdIL3aq8FWoUL4t5-46" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-17 Registrar devolución" vertex="1">
+          <mxGeometry height="60" width="177" x="91" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-51" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-45" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-46" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="204" y="1290" as="sourcePoint" />
+            <mxPoint x="294" y="1460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-53" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Administrador" vertex="1">
+          <mxGeometry height="60" width="30" x="384" y="1790" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-54" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Módulo de Historial de Solicitudes" vertex="1">
+          <mxGeometry height="250" width="340" x="229" y="1950" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-55" parent="hZxWZdIL3aq8FWoUL4t5-54" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-18 Consultar historial" vertex="1">
+          <mxGeometry height="80" width="180" x="83" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-58" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-53" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-54" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="429" y="2690" as="sourcePoint" />
+            <mxPoint x="459" y="2040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-60" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Profesor" vertex="1">
+          <mxGeometry height="60" width="30" x="1206" y="1230" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-61" parent="1" style="swimlane;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="Módulo&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(26, 26, 26), rgb(215, 215, 215));&quot;&gt;de Consulta de Solicitudes&lt;/span&gt;" vertex="1">
+          <mxGeometry height="250" width="340" x="1051" y="1430" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-62" parent="hZxWZdIL3aq8FWoUL4t5-61" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#F5AB50;strokeColor=#909090;fontColor=#1A1A1A;" value="CU-19 Consultar mis solicitudes" vertex="1">
+          <mxGeometry height="100" width="197" x="71.5" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="hZxWZdIL3aq8FWoUL4t5-63" edge="1" parent="1" source="hZxWZdIL3aq8FWoUL4t5-60" style="endArrow=classic;html=1;rounded=0;labelBackgroundColor=none;strokeColor=#182E3E;fontColor=default;" target="hZxWZdIL3aq8FWoUL4t5-61" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1251" y="2170" as="sourcePoint" />
+            <mxPoint x="1281" y="1520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
