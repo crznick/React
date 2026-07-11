@@ -72,7 +72,7 @@ const App = () => {
     //Esta función permite filtrar los valores traidos anteriormente para poder filtrarlos por otro campo, en este caso el nombre "descripcion", pero ssolo los disponibles
     const equiposFiltrados = equipos.filter(equipo =>
         equipo.descripcion.toLowerCase().includes(filtroNombre.toLowerCase()) &&
-        equipo.estado.toLowerCase() === 'disponible'
+        equipo.disponibilidad.toLowerCase() === 'disponible'
     );
 
     //Función para abrir el modal de reserva
@@ -95,12 +95,12 @@ const App = () => {
     //Función para reservar un equipo
     const reservarEquipo = async () => {
         if (!selectedEquipo) return;
-        const { descripcion, marbete } = selectedEquipo;
+        const { descripcion, activo } = selectedEquipo;
         try {
             const response = await axios.post(SOLICITUDES, {
                 correo,
                 equipo: descripcion,
-                marbete: marbete,
+                activo: activo,
             });
             if (response.status === 200) {
                 setConfirmationMessage('Solicitud enviada correctamente.');
@@ -174,7 +174,7 @@ const App = () => {
                                 <Card key={equipo._id} sx={{ width: '100%', maxWidth: '100%' }}>
                                     <CardContent>
                                         <Typography variant="h6">{equipo.descripcion}</Typography>
-                                        <Typography variant="body2" color="textSecondary">Estado: {equipo.estado}</Typography>
+                                        <Typography variant="body2" color="textSecondary">Disponibilidad: {equipo.disponibilidad}</Typography>
                                         <Button onClick={() => handleOpenModal(equipo)} variant="contained" color="primary" style={{ marginTop: '8px'}}>
                                             Reservar
                                         </Button>
@@ -196,7 +196,7 @@ const App = () => {
                                     <CardContent>
                                         <Typography variant="h6">{solicitud.equipo}</Typography>
                                         <Typography variant="body2" color="textSecondary">Correo: {solicitud.correo}</Typography>
-                                        <Typography variant="body2" color="textSecondary">Marbete: {solicitud.marbete}</Typography>
+                                        <Typography variant="body2" color="textSecondary">Activo: {solicitud.activo}</Typography>
                                         <Typography variant="body2" color="textPrimary">Estado: {solicitud.estado}</Typography>
                                     </CardContent>
                                 </Card>

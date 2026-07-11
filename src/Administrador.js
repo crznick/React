@@ -135,10 +135,10 @@ const App = () => {
     };
 
     //Función para cambiar el estado de una solicitud
-    const cambiarEstadoSolicitud = async (id, marbete, nuevoEstado) => {
+    const cambiarEstadoSolicitud = async (id, activo, nuevoEstado) => {
         try {
             const response = await axios.post(`${SOLICITUDES}/${id}`, {
-                marbete: marbete,
+                activo: activo,
                 encargado: procesarCorreo(correo),
                 estado: nuevoEstado,
             });
@@ -212,7 +212,7 @@ const App = () => {
         try {
             const response = await axios.post(EQUIPOS, {
                 descripcion: descripcionEquipo,
-                marbete: marbeteEquipo,
+                activo: marbeteEquipo,
             });
             if (response.status === 200) {
                 setConfirmationMessage('Equipo guardado correctamente.');
@@ -418,7 +418,7 @@ const App = () => {
                                         {solicitud.estado === 'PENDIENTE' && (
                                             <div>
                                                 <Button
-                                                    onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.marbete, 'APROBADO') }
+                                                    onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.activo, 'APROBADO') }
                                                     variant="contained"
                                                     color="primary"
                                                     style={{ marginTop: '8px', marginRight: '8px' }}
@@ -426,7 +426,7 @@ const App = () => {
                                                     Aprobar
                                                 </Button>
                                                 <Button
-                                                    onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.marbete, 'NO_APROBADO') }
+                                                    onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.activo, 'NO_APROBADO') }
                                                     variant="contained"
                                                     color="secondary"
                                                     style={{ marginTop: '8px' }}
@@ -437,7 +437,7 @@ const App = () => {
                                         )}
                                         {solicitud.estado === 'APROBADO' && (
                                             <Button
-                                                onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.marbete, 'RETORNADO') }
+                                                onClick={() => cambiarEstadoSolicitud(solicitud._id, solicitud.activo, 'RETORNADO') }
                                                 variant="contained"
                                                 color="primary"
                                                 style={{ marginTop: '8px' }}
@@ -456,7 +456,7 @@ const App = () => {
                     <div>
                         <Typography variant="h4" gutterBottom sx={{ marginTop: '100px' }}>Agregar Equipos</Typography>
                         <TextField
-                            label="Marbete"
+                            label="Activo"
                             variant="outlined"
                             fullWidth
                             margin="normal"
@@ -499,9 +499,9 @@ const App = () => {
                                     <CardContent>
                                         <Typography variant="h12">{equipo._id}</Typography>
                                         <Typography variant="h6">{equipo.descripcion}</Typography>
-                                        <Typography variant="h10">Marbete: {equipo.marbete}</Typography>
-                                        <Typography variant="body2" color="#4f237f">{equipo.estado}</Typography>
-                                        {equipo.estado === 'DISPONIBLE' && (
+                                        <Typography variant="h10">Activo: {equipo.activo}</Typography>
+                                        <Typography variant="body2" color="#4f237f">{equipo.disponibilidad}</Typography>
+                                        {equipo.disponibilidad === 'DISPONIBLE' && (
                                             <div>
                                                 <Button
                                                     variant="contained"
@@ -538,7 +538,7 @@ const App = () => {
                                     <CardContent>
                                         <Typography variant="h6">{historial.equipo}</Typography>
                                         <Typography variant="body2" color="textSecondary">Correo: {historial.correo}</Typography>
-                                        <Typography variant="body2" color="textSecondary">Marbete: {historial.marbete}</Typography>
+                                        <Typography variant="body2" color="textSecondary">Activo: {historial.activo}</Typography>
                                         <Typography variant="body2" color="textPrimary">Estado: {historial.estado}</Typography>
                                     </CardContent>
                                 </Card>
