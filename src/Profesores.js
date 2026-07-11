@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LogoutButton from './LogOut';
 
 const App = () => {
+    //## Uso de variable de entorno para facilitar la dockerización
     const API_URL = process.env.REACT_APP_API_URL;
     const SOLICITUDES = `${API_URL}/solicitudes`;
     const EQUIPOS = `${API_URL}/equipos`;

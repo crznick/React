@@ -6,6 +6,7 @@ const Login = () => {
     const [correo, setCorreo] = useState('');
     const [pass, setPass] = useState('');
     const [error, setError] = useState('');
+    //## Uso de variables de entorno para facilitar la dockerización
     const API_URL = process.env.REACT_APP_API_URL;
     const USUARIOS = `${API_URL}/usuarios`;
     const LOGIN =  `${API_URL}/login`

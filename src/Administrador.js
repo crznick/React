@@ -14,6 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const App = () => {
+    //## Uso de variables de entorno para facilitar la dockerización
     const API_URL = process.env.REACT_APP_API_URL;
     const USUARIOS = `${API_URL}/usuarios`;
     const SOLICITUDES = `${API_URL}/solicitudes`;
